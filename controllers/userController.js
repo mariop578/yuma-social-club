@@ -60,4 +60,36 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+  async addFriend(req, res) {
+    try {
+      const userData = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        // addToSet is an update operator
+        { $addToSet: { friends: req.params.friendId } },
+        { new: true }
+      );
+      if (!userData) {
+        return res.status(404);
+      }
+      res.status(200).json(userData);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
+
+  async deleteFriend(req, res) {
+    try {
+      const userData = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $pull: { friends: req.params.friendId } },
+        { new: true }
+      );
+      if (!userData) {
+        return res.status(404);
+      }
+      res.status(200).json(userData);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
 };
