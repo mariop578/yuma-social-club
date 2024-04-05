@@ -47,6 +47,8 @@ thoughtSchema.virtual("reactionCount").get(function () {
 // Getter method to format the timestamp on query
 thoughtSchema.set("toObject", { getters: true });
 thoughtSchema.set("toJSON", { getters: true });
+reactionSchema.set("toObject", { getters: true });
+reactionSchema.set("toJSON", { getters: true });
 
 const Thought = model("Thought", thoughtSchema);
 

@@ -58,4 +58,32 @@ module.exports = {
       res.status(400).json(error);
     }
   },
+  async addReaction(req, res) {
+    try {
+      const thought = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $addToSet: { reactions: req.body } }
+      );
+      if (!thought) {
+        return res.status(404);
+      }
+      res.status(200).json(thought);
+    } catch (error) {
+      res.status(400).json(error);
+    }
+  },
+  async removeReaction(req, res) {
+    try {
+      const thought = await Thought.findByIdAndDelete(
+        { _id: req.params.thoughtId },
+        { $pull: { reactions: { reactionId: req.params.reactionId } } }
+      );
+      if (!thought) {
+        res.status(404);
+      }
+      res.status(200).json(thought);
+    } catch (error) {
+      res.status(400).json(error);
+    }
+  },
 };
