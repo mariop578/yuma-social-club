@@ -32,6 +32,10 @@ node index
 
 ## Demo
 
+https://github.com/mariop578/yuma-social-club/assets/147361826/0bfa9ef1-7f40-4dc7-bf67-09ea9cbb998a
+
+
+
 ## License
 
 This project is licensed under the MIT License License - see the [LICENSE.md](LICENSE.md) file for details.
